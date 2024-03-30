@@ -19,10 +19,7 @@ namespace Application.FormService
             _formRepository = formRepository;
         }
 
-        public async Task<Form> GetFormByIdAsync(Guid id)
-        {
-            return await _formRepository.GetByIdAsync(id);
-        }
+      
 
         public async Task<List<Form>> GetAllFormsAsync()
         {
@@ -58,7 +55,7 @@ namespace Application.FormService
             }
             var newRequest = new Form
             {
-                Language = form.Language,
+                Language = form.Language.ToString(),
                 Style = newFormStyle,
                 FormElements = newFormElement,
 
@@ -95,7 +92,7 @@ namespace Application.FormService
             }
             var newRequest = new Form
             {
-                Language = form.Language,
+                Language = form.Language.ToString(),
                 Style = newFormStyle,
                 FormElements = newFormElement,
 
@@ -107,6 +104,16 @@ namespace Application.FormService
         public async Task DeleteFormAsync(Guid id)
         {
             await _formRepository.DeleteAsync(id);
+        }
+
+        public async Task<Form> GetFormByIdAsync(Guid id)
+        {
+           return await _formRepository.GetByIdAsync(id);
+        }
+
+        public Task<Form> GetFormDetailByIdAsync(Guid id)
+        {
+            return _formRepository.GetByIdFormAsync(id);
         }
     }
 

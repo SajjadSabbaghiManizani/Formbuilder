@@ -1,17 +1,11 @@
 ﻿using Application.FormService;
 using Infrastructure.AppDbContext;
 using Infrastructure.Repository;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace EndpointsAPI
 {
@@ -27,10 +21,11 @@ namespace EndpointsAPI
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer("Data Source=.;Database=Sample;TrustServerCertificate=True;Persist Security Info=True;Integrated Security=False;User ID =sa; Password=1234;Connect Timeout=15000;MultipleActiveResultSets=true;"));
-
+           builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             builder.Services.AddControllers();
             var SecretKey = "E1BB465D57BK;LHDLFJHSDFB4787C2D5BCF325A2E";
-
+            builder.Services.AddControllersWithViews();       
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

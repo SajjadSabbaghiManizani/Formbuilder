@@ -28,13 +28,14 @@ namespace Endpoints_API.Controllers
         public async Task<ActionResult<List<Form>>> GetAllForms()
         {
             var Forms = await _FormService.GetAllFormsAsync();
+ 
             return Ok(Forms);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Form>> GetForm(Guid  id)
         {
-            var Form = await _FormService.GetFormByIdAsync(id);
+            var Form = await _FormService.GetFormDetailByIdAsync(id);
             if (Form == null)
             {
                 return NotFound();

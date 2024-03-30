@@ -11,7 +11,7 @@ namespace Domian.Entities
     public class FormElement :BaseEntity
     {
       
-        [Required]
+   
         [Display(Name = "Label")]
         public string ElementLabel { get; set; } = string.Empty;
         [Display(Name = "Type")]

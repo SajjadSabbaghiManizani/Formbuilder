@@ -9,6 +9,6 @@ namespace Infrastructure.Repository
 {
     public interface  IFormRepository : IRepository<Form>
     {
-
+            Task<Form> GetByIdFormAsync(Guid id);
     }
 }

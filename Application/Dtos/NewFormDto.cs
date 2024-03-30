@@ -13,7 +13,7 @@ namespace Application.Dtos
     {
         public FormStyleDTO Style { get; set; }
         public  ICollection<FormElementDTO> FormElements { get; set; }
-        public Language Language { get; set; }
+        public string Language { get; set; }
 
     }
     public record FormStyleDTO 
