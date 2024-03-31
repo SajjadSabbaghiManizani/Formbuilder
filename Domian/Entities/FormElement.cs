@@ -10,8 +10,7 @@ namespace Domian.Entities
 {
     public class FormElement :BaseEntity
     {
-      
-   
+     
         [Display(Name = "Label")]
         public string ElementLabel { get; set; } = string.Empty;
         [Display(Name = "Type")]

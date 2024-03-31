@@ -1,10 +1,5 @@
 ﻿using Application.Dtos;
 using Domian.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.FormService
 {
@@ -16,5 +11,6 @@ namespace Application.FormService
         Task<string> AddFormAsync(NewFormDto form);
         Task UpdateFormAsync(NewFormDto form);
         Task DeleteFormAsync(Guid id);
+        Task<string> GetFormHtml(Guid id);
     }
 }

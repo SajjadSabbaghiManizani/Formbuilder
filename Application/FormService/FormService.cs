@@ -1,5 +1,6 @@
 ﻿using Application.Dtos;
 using Domian.Entities;
+using Domian.Enums;
 using Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Application.FormService
     public class FormService : IFormService
     {
         private readonly IFormRepository _formRepository;
+
 
         public FormService(IFormRepository formRepository)
         {
@@ -115,6 +117,17 @@ namespace Application.FormService
         {
             return _formRepository.GetByIdFormAsync(id);
         }
+
+        public async Task<string> GetFormHtml(Guid id)
+        { 
+
+            var form = await _formRepository.GetByIdFormAsync(id);
+            
+            var result = Converter.JsonToHtmlConverter(form, form.FormElements.ToList());
+
+            return result;  
+        }
+      
     }
 
 }

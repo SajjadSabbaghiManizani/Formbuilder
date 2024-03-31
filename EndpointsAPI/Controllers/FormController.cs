@@ -73,6 +73,17 @@ namespace Endpoints_API.Controllers
             await _FormService.DeleteFormAsync(id);
             return NoContent();
         }
+
+        [HttpGet("HTML{id}")]
+        public async Task<ActionResult<string>> GetHtmlForm(Guid id)
+        {
+            var Form = await _FormService.GetFormHtml(id);
+            if (Form == null)
+            {
+                return NotFound();
+            }
+            return Form;
+        }
     }
 }
 
